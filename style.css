@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    cursor: none;
+}
+
+:root {
+    --pr-color: #fff;
+    --second-color: #0a0a0a;
+    --cubicbezier: cubic-bezier(.9, 0, .1, 1);
+    --fz-big: 80px;
+}
+
+body {
+    background: var(--second-color);
+}
+
+.wrapp {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 0 20px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.header__bl {
+    position: relative;
+    width: 80%;
+    z-index: 2;
+}
+
+.title {
+    margin: 0;
+    margin-bottom: 60px;
+    font-size: var(--fz-big);
+    text-transform: uppercase;
+    color: var(--pr-color);
+}
+
+.title span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--pr-color);
+}
+
+.header__img {
+    position: relative;
+    display: flex;
+    gap: 100px;
+    width: 100%;
+}
+
+.header__img::before,
+.header__img::after {
+    position: absolute;
+    content: '';
+    width: 90px;
+    height: 90px;
+}
+
+.header__img::before {
+    bottom: -20px;
+    left: -20px;
+    border-left: 1px solid var(--pr-color);
+    border-bottom: 1px solid var(--pr-color);
+}
+
+.header__img::after {
+    top: -20px;
+    right: -20px;
+    border-top: 1px solid var(--pr-color);
+    border-right: 1px solid var(--pr-color);
+}
+
+
+.header__item {
+    width: 50%;
+    height: 55vh;
+    overflow: hidden;
+}
+
+.header__item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cursor,
+.follow {
+    position: fixed;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    transform: rotate(45deg);
+    z-index: 9999;
+}
+
+.cursor {
+    width: 10px;
+    height: 10px;
+    background: var(--pr-color);
+    transition: transform .4s var(--cubicbezier);
+}
+
+.follow {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #303030;
+    transition: border .4s var(--cubicbezier);
+}
+
+.cursor.active {
+    transform: rotate(45deg) scale(0);
+}
+
+.follow.active {
+    border-color: transparent;
+}
+
+.follow__text {
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: var(--pr-color);
+    transition: opacity .4s var(--cubicbezier), transform .4s var(--cubicbezier);
+    transition-delay: .1s;
+}
+
+.follow.active .follow__text {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.follow__text div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 14px;
+    color: var(--second-color);
+    text-transform: uppercase;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
